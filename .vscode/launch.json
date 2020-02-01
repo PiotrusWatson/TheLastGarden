@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/ggj2020",
+            "program": "${workspaceFolder}/ggj2020.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
