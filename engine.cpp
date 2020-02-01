@@ -4,15 +4,17 @@
 #include "state.h"
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_render.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 
 #define MX_OKAY 0
 #define MX_ERR  1
 
 bool Engine::init()
 {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
     {
         MX_LOG("Could not initialise SDL");
         MX_LOG("---> " << SDL_GetError);
@@ -55,14 +57,35 @@ bool Engine::init()
         return false;
     }
 
+    int mix_flags = MIX_INIT_MP3 | MIX_INIT_OGG;
+
+    if (Mix_Init((mix_flags) & mix_flags) != mix_flags)
+    {
+        MX_LOG("Could not initialize Audio Mixer");
+        MX_LOG(Mix_GetError);
+        return false;
+    }
+
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0)
+    {
+        MX_LOG("Unable to find suitable Audio Device");
+        MX_LOG(Mix_GetError);
+        return false;
+    }
+
     active = true;
     return true;
 }
 
 void Engine::cleanup()
 {
-    // -----[ STATE VAULT CLEANUP ]-----
-    state_vault.clear();
+    // -----[ HALT & CLEANUP MUSIC ]-----
+    if (music != nullptr)
+    {
+        if (Mix_PlayingMusic()) stop_music();
+        Mix_FreeMusic(music);
+        music = nullptr;
+    }
 
     // -----[ TEXT VAULT CLEANUP ]-----
     for (auto & it: text_vault)
@@ -99,6 +122,9 @@ void Engine::cleanup()
 
     TTF_Quit();
     IMG_Quit();
+
+    Mix_CloseAudio();
+    while(Mix_Init(0)) Mix_Quit();
 
     if (renderer != nullptr)
     {
@@ -330,7 +356,35 @@ SDL_Texture* Engine::fetch_texture(const std::string & file)
     // Yes, this section of the code is awful, have pity on me plz
     SDL_Texture * texture = nullptr;
     texture = IMG_LoadTexture(renderer, file.c_str());
-    if (texture != nullptr) texture_vault[file] = texture;
+    if (texture != nullptr)
+    {
+        SDL_SetTextureBlendMode(texture,SDL_BLENDMODE_BLEND);
+        texture_vault[file] = texture;
+    }
     else MX_LOG("Could not load image: " << file);
     return texture;
+}
+
+void Engine::play_music(const std::string & file)
+{
+    if (music != nullptr) 
+    {
+        if (Mix_PlayingMusic()) stop_music();
+        Mix_FreeMusic(music);
+        music = nullptr;
+    }
+
+    music = Mix_LoadMUS(file.c_str());
+    if (music == nullptr) return;
+    Mix_PlayMusic(music,-1);
+}
+
+bool Engine::is_music_playing()
+{
+    return Mix_PlayingMusic();
+}
+
+void Engine::stop_music()
+{
+    Mix_HaltMusic();
 }
