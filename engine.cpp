@@ -31,7 +31,7 @@ bool Engine::init()
         return false;
     }
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE | SDL_RENDERER_ACCELERATED);
     if (renderer == nullptr)
     {
         MX_LOG("[ ERR ] Could not create renderer");
@@ -148,6 +148,14 @@ int Engine::execute(const std::string & initial_state)
     {
         cleanup();
         return MX_ERR;
+    }
+
+    for (auto & it: state_vault)
+    {
+        if (it.second != nullptr)
+        {
+            if (it.second->init() == false) halt();
+        }
     }
 
     if (!switch_state(initial_state))
@@ -304,7 +312,9 @@ void Engine::render_text(Text_ID id, int x, int y)
     auto search = text_vault.find(id);
     if (search == text_vault.end()) return; // could not find text;
     if (search->second == nullptr) return; // should not have null textures, but all the same
-    SDL_RenderCopy(renderer, search->second, nullptr, nullptr);
+    SDL_Rect dst = {x,y,0,0};
+    SDL_QueryTexture(search->second, nullptr, nullptr, &dst.w, &dst.h);
+    SDL_RenderCopy(renderer, search->second, nullptr, &dst);
 
 
     // TODO: Fill this function in!

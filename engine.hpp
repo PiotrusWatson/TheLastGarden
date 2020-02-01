@@ -39,7 +39,7 @@ public:
 
     void window_size(int * w, int * h);
 
-    Text_ID create_text(const std::string & font, int size, const std::string text, Ui32 wrap);
+    Text_ID create_text(const std::string & font, int size, const std::string text, Ui32 wrap = 0);
 
     void render_texture(const std::string & file);
     void render_texture(const std::string & file, int x, int y, float xscale = 1, float yscale = 1);
