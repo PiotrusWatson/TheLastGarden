@@ -4,7 +4,18 @@ using namespace std;
 
 
 
-enum class Ground { ALIVE, DEAD, FENCE };
+enum class Ground {
+    ALIVE, 
+    DEAD, 
+    FENCE_STRAIGHT_TOP, 
+    FENCE_STRAIGHT_LEFT, 
+    FENCE_STRAIGHT_BOTTOM, 
+    FENCE_STRAIGHT_RIGHT, 
+    FENCE_CORNER_TOP_LEFT,
+    FENCE_CORNER_TOP_RIGHT,
+    FENCE_CORNER_BOTTOM_LEFT,
+    FENCE_CORNER_BOTTOM_RIGHT
+};
 
 string groundToString (Ground ground)
 {
@@ -12,23 +23,37 @@ string groundToString (Ground ground)
     {
         case Ground::ALIVE: return "Assets/Images/Ground_Neutral.png";
         case Ground::DEAD: return "Assets/Images/Dead-Ground.png";
-        case Ground::FENCE: return "Assets/Images/Fence-Plus-Dead-Ground.png";
+        case Ground::FENCE_STRAIGHT_TOP: return "Assets/Images/Fence-Plus-Dead-Ground-1.png";
+        case Ground::FENCE_STRAIGHT_LEFT: return "Assets/Images/Fence-Plus-Dead-Ground-2.png";
+        case Ground::FENCE_STRAIGHT_BOTTOM: return "Assets/Images/Fence-Plus-Dead-Ground-3.png";
+        case Ground::FENCE_STRAIGHT_RIGHT: return "Assets/Images/Fence-Plus-Dead-Ground-4.png";
+        case Ground::FENCE_CORNER_TOP_LEFT: return "Assets/Images/Fence-Plus-Dead-Ground-7.png";
+        case Ground::FENCE_CORNER_TOP_RIGHT: return "Assets/Images/Fence-Plus-Dead-Ground-8.png";
+        case Ground::FENCE_CORNER_BOTTOM_LEFT: return "Assets/Images/Fence-Plus-Dead-Ground-6.png";
+        case Ground::FENCE_CORNER_BOTTOM_RIGHT: return "Assets/Images/Fence-Plus-Dead-Ground-5.png";
     }
 }
 
 
 enum class Plant { LANDSEED, LANDSMALL, LANDBIG, WATERSEED, WATERSMALL, WATERBIG };
 
-pair<string, pair<int, int>> plantToString (Plant plant)
+// struct Sprite
+// {
+//     Sprite(const std::string & name, int xpos, int ypos) : texture(name), x(xpos), y(ypos) {}
+//     std::string texture;
+//     int x, y;
+// };
+
+string plantToString (Plant plant)
 {
     switch (plant)
     {
-        case Plant::LANDSEED: return pair<string, pair<int, int>>("Assets/Images/Trees.png", pair<int, int>(0, 0));
-        case Plant::LANDSMALL: return pair<string, pair<int, int>>("Assets/Images/Trees.png", pair<int, int>(0, 1));
-        case Plant::LANDBIG: return pair<string, pair<int, int>>("Assets/Images/Trees.png", pair<int, int>(0, 2));
-        case Plant::WATERSEED: return pair<string, pair<int, int>>("Assets/Images/Trees.png", pair<int, int>(1, 0));
-        case Plant::WATERSMALL: return pair<string, pair<int, int>>("Assets/Images/Trees.png", pair<int, int>(1, 1));
-        case Plant::WATERBIG: return pair<string, pair<int, int>>("Assets/Images/Trees.png", pair<int, int>(1, 2));
+        case Plant::LANDSEED: return "Assets/Images/Trees-1.png";
+        case Plant::LANDSMALL: return "Assets/Images/Trees-2.png";
+        case Plant::LANDBIG: return "Assets/Images/Trees-3.png";
+        case Plant::WATERSEED: return "Assets/Images/Trees-4.png";
+        case Plant::WATERSMALL: return "Assets/Images/Trees-5.png";
+        case Plant::WATERBIG: return "Assets/Images/Trees-6.png";
     }
 }
 
