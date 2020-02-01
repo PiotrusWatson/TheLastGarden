@@ -61,8 +61,10 @@ bool Engine::init()
 
 void Engine::cleanup()
 {
+    // -----[ STATE VAULT CLEANUP ]-----
     state_vault.clear();
 
+    // -----[ TEXT VAULT CLEANUP ]-----
     for (auto & it: text_vault)
     {
         if (it.second != nullptr)
@@ -73,6 +75,7 @@ void Engine::cleanup()
     }
     text_vault.clear();
 
+    // -----[ FONT VAULT CLEANUP ]-----
     for (auto & it: font_vault)
     {
         if (it.second != nullptr)
@@ -83,6 +86,7 @@ void Engine::cleanup()
     }
     font_vault.clear();
 
+    // -----[ TEXTURE VAULT CLEANUP ]-----
     for (auto & it: texture_vault)
     {
         if (it.second != nullptr)
@@ -294,10 +298,14 @@ void Engine::render_texture(const std::string & file, int x, int y, float xScale
     SDL_RenderCopy(renderer, tx, nullptr, &dst);
 }
 
-void render_text(Text_ID id, int x, int y)
+void Engine::render_text(Text_ID id, int x, int y)
 {
     if (id == INVALID_TEXT_ID) return;
-    // auto search = text_vault.find(id);
+    auto search = text_vault.find(id);
+    if (search == text_vault.end()) return; // could not find text;
+    if (search->second == nullptr) return; // should not have null textures, but all the same
+    SDL_RenderCopy(renderer, search->second, nullptr, nullptr);
+
 
     // TODO: Fill this function in!
 }

@@ -12,6 +12,8 @@ public:
     State() : _engine(nullptr) {}
     virtual ~State() {}
 
+    /// returns true on successful initialization and false on failure
+    virtual bool init() { return true; }
     virtual void on_enter() {}
     virtual void on_leave() {}
 

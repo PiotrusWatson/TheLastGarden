@@ -53,7 +53,7 @@ private:
 
     std::unordered_map<std::string, SDL_Texture*> texture_vault;
     std::unordered_map<std::string, State*> state_vault;
-    std::unordered_map<Ui32, SDL_Texture*> text_vault;
+    std::unordered_map<Text_ID, SDL_Texture*> text_vault;
     std::unordered_map<std::string, _TTF_Font*> font_vault;
 
     Text_ID next_text_id;
