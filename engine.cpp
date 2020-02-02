@@ -73,6 +73,7 @@ bool Engine::init()
         return false;
     }
 
+    SDL_SetRenderDrawBlendMode(renderer,SDL_BLENDMODE_BLEND);
     active = true;
     return true;
 }
@@ -392,6 +393,21 @@ void Engine::stop_music()
 void Engine::get_texture_size(const std::string & file, int * w, int* h)
 {
     SDL_Texture* tx = fetch_texture(file);
+    if (tx == nullptr) return;
+    SDL_QueryTexture(tx, nullptr, nullptr, w, h);
+}
+
+void Engine::render_fill(Ui8 r, Ui8 g, Ui8 b, Ui8 a)
+{
+    SDL_SetRenderDrawColor(renderer,r,g,b,a);
+    SDL_RenderFillRect(renderer,nullptr);
+}
+
+void Engine::get_text_size(Text_ID id, int * w, int* h)
+{
+    auto search = text_vault.find(id);
+    if (search == text_vault.end()) return;
+    SDL_Texture* tx = search->second;
     if (tx == nullptr) return;
     SDL_QueryTexture(tx, nullptr, nullptr, w, h);
 }

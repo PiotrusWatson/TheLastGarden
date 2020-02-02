@@ -40,7 +40,6 @@ public:
     }
 private:
     std::string title_img = "Assets/Images/Title_Screen.png";
-    Text_ID text;
 };
 
 #endif /* _title_state_h */
