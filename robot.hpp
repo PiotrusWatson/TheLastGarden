@@ -18,7 +18,7 @@ struct Robot
     Robot(int xPos, int yPos) : x(xPos), y(yPos), energy(0) {}
     
     int x, y, energy, seeds;
-    int dirx, diry;
+    int dirx = 0, diry = 0;
     int dir, oldDir;
 
     void move(int direction, Tilemap<Ground> & g, Tilemap<Plant> & p, Tilemap<Obstacle> & o);

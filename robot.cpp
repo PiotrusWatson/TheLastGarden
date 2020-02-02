@@ -13,7 +13,7 @@ void Robot::move(int direction, Tilemap<Ground> & g, Tilemap<Plant> & p, Tilemap
     Plant plant = *(p.get(diry, dirx));
     Obstacle obstacle = *(o.get(diry, dirx));
 
-    MX_LOG(int(plant) << " " << dirx << " " << diry);
+    
 
     switch(direction){
         case Direction::UP: 
