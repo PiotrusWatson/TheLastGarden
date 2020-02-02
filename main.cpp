@@ -5,6 +5,10 @@
 
 std::string my_img = "/home/nano/Pictures/Avatars/yuriheart.jpg";
 
+const Ui map_w = 11;
+const Ui map_h = 11;
+int floor_map[map_w * map_h];
+
 class Test_State : public State
 {
 public:
