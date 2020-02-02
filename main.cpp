@@ -10,7 +10,7 @@ void render_scaled (Engine * engine, const std::string & file, int x, int y);
 
 const int TILE_SIZE = 16;
 const int GLOBAL_SCALE = 4;
-const string PLAYER_SPRITE = "Assets/Images/Robot_Idle.png"; // TODO: needs to be animated
+const string PLAYER_SPRITE = "Assets/Images/Robot_Idle-5.png"; // TODO: needs to be animated
 // PLACEHOLDER MAP SIZE
 const int xNumOfTiles = 11, yNumOfTiles = 11;
 
@@ -53,7 +53,10 @@ public:
     
     bool init() override
     { 
+        //initialize map
         plantLevel[9][1] = Plant::GENERATOR;
+
+
         return true; 
     }
 
@@ -88,6 +91,8 @@ public:
             }    
 
         }
+
+        render_scaled(engine(), PLAYER_SPRITE, 3 * 64, 9 *64);
         // drawDeadGround(engine(), xNumOfTiles + 6, yNumOfTiles + 6);
     }
     void on_keydown(Si32 key) override
