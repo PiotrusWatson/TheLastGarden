@@ -92,4 +92,4 @@ string obstacleToString (Obstacle obstacle)
     }
 }
 
-//robot not yet loaded
+

@@ -96,29 +96,39 @@ public:
         }
 
         render_scaled(engine(), PLAYER_SPRITE, rob.y * 64, rob.x *64);
+        render_scaled(engine(), obstacleToString(Obstacle::FIRE), rob.diry * 64, rob.dirx *64);
         // drawDeadGround(engine(), xNumOfTiles + 6, yNumOfTiles + 6);
     }
     void on_keydown(Si32 key) override
     {
+        //Switch Statement to check for keys
+        //Gives the direction of the robot and calculate coordinate of the next tile
         if (key == SDLK_ESCAPE) engine()->switch_state("test2");
         switch(key)
         {
             case SDLK_ESCAPE: 
                 engine()->switch_state("test2");
                 break;
-            case SDLK_UP:
-                rob.x--;
+            case SDLK_UP: 
+                rob.dir = Robot::UP; 
+                rob.dirx = rob.x - 1; rob.diry = rob.y; 
                 break;
-            case SDLK_DOWN:
-                rob.x++;
+            case SDLK_DOWN: 
+                rob.dir = Robot::DOWN;
+                rob.dirx = rob.x + 1; rob.diry = rob.y; 
                 break;
-            case SDLK_LEFT:
-                rob.y--;
+            case SDLK_LEFT: 
+                rob.dir = Robot::LEFT; 
+                rob.dirx = rob.x; rob.diry = rob.y-1;
                 break;
-            case SDLK_RIGHT:
-                rob.y++;
+            case SDLK_RIGHT: 
+                rob.dir = Robot::RIGHT; 
+                rob.dirx = rob.x; rob.diry = rob.y+1;
                 break;
+            default: break;
         }
+        
+        rob.move();
         
     }
 private:

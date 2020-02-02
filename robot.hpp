@@ -1,5 +1,5 @@
-#ifndef _robot_hpp
-#define _robot_hpp
+#ifndef robot_h
+#define robot_h
 
 #include <string>
 using namespace std;
@@ -9,16 +9,22 @@ struct Robot
 {
     enum Direction : int
     {
-        UP, DOWN, LEFT, RIGHT
+        UP, DOWN, LEFT, RIGHT, NONE
     };
 
-    Robot() : x(0), y(0), energy(0) {}
+    Robot() : x(5), y(5), energy(20), oldDir(NONE), dir(RIGHT){}
     Robot(int xPos, int yPos) : x(xPos), y(yPos), energy(0) {}
     
     int x, y, energy;
-    int dir;
+    int dirx, diry;
+    int dir, oldDir;
+    
+    void move();
+
+    //simple substraction on the energy
+    int loseEnergy(int amount);
 };
 
 
 
-#endif _robot_hpp
+#endif 

@@ -4,5 +4,35 @@
 
 using namespace std;
 
-// Robot::Robot() : x(0), y(0), energy(0) {}
-// Robot::Robot(int xPos, int yPos) : x(xPos), y(yPos), energy(0) {}
+void Robot::move(){
+    
+    if(oldDir != dir)
+    {
+        oldDir = dir;
+    }
+    else
+    {
+        switch(dir)
+        {
+            case Direction::UP: x -= 1; 
+                break;
+            case Direction::DOWN: x += 1;
+                break; 
+            case Direction::LEFT: y -= 1;
+                break; 
+            case Direction::RIGHT: y += 1;
+                break; 
+            default:
+                break;
+
+        }
+        
+        loseEnergy(4);
+        oldDir = NONE;
+    }
+};
+
+int Robot::loseEnergy(int amount){
+    energy -= amount;
+    return energy; 
+}
