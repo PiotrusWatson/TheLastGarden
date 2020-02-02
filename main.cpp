@@ -3,6 +3,8 @@
 #include <utility>
 #include <vector>
 #include "tiles.hpp"
+#include "robot.hpp"
+#include "debug.h"
 
 using namespace std;
 
@@ -42,7 +44,7 @@ vector<vector<Obstacle>> obstacleLevel(xNumOfTiles, vector<Obstacle>(yNumOfTiles
 // TEST STATE
 ////////////////////////////////////////////////////////////////////
 
-#include "debug.h"
+
 
 class Test_State : public State
 {
@@ -50,12 +52,13 @@ class Test_State : public State
 
 public:
 
-    
+    Robot rob;
+
     bool init() override
     { 
         //initialize map
         plantLevel[9][1] = Plant::GENERATOR;
-
+        rob = Robot();
 
         return true; 
     }
@@ -92,12 +95,31 @@ public:
 
         }
 
-        render_scaled(engine(), PLAYER_SPRITE, 3 * 64, 9 *64);
+        render_scaled(engine(), PLAYER_SPRITE, rob.y * 64, rob.x *64);
         // drawDeadGround(engine(), xNumOfTiles + 6, yNumOfTiles + 6);
     }
     void on_keydown(Si32 key) override
     {
         if (key == SDLK_ESCAPE) engine()->switch_state("test2");
+        switch(key)
+        {
+            case SDLK_ESCAPE: 
+                engine()->switch_state("test2");
+                break;
+            case SDLK_UP:
+                rob.x--;
+                break;
+            case SDLK_DOWN:
+                rob.x++;
+                break;
+            case SDLK_LEFT:
+                rob.y--;
+                break;
+            case SDLK_RIGHT:
+                rob.y++;
+                break;
+        }
+        
     }
 private:
     Text_ID text;
