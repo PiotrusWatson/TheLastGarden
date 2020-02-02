@@ -11,23 +11,25 @@ public:
 
     void fill(const T & t)
     {
-        for (auto & it: data) it = t;
+        for (auto & it: _data) it = t;
     }
 
     T* get(Ui x, Ui y)
     {
-        if ((x >= WIDTH) || (y >= HEIGHT)) return nullptr;
-        else return _data[y*WIDTH +x];
+        if ((x >= w) || (y >= h)) return nullptr;
+        else return _data[y*w +x];
     }
 
     void set(Ui x, Ui y, const T & t)
     {
-        if ((x >= WIDTH) || (y >= HEIGHT)) return nullptr;
-        else _data[y*WIDTH + x] = t;
+        if ((x >= w) || (y >= h)) return;
+        else _data[y*w + x] = t;
     }
 
     Ui width(){ return w; }
     Ui height(){ return h; }
+
+    const T& data(){ return *_data.data(); }
 private:
     std::vector<T> _data;
     Ui w;

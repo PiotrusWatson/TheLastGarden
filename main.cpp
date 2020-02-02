@@ -12,7 +12,7 @@ class Test_State : public State
 public:
     bool init() override
     {
-        
+        return true;
     }
     void update() override {}
     void render() override
