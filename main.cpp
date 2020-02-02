@@ -26,19 +26,25 @@ const vector<Ground> GROUND_LEVEL = {Ground::DEAD};
 // TEST STATE
 ////////////////////////////////////////////////////////////////////
 
-
+#include "debug.h"
 
 class Test_State : public State
 {
+
 public:
-    bool init() override { return true; }
+
+    
+    bool init() override
+    { 
+        MX_LOG("Init called!");
+        return true; 
+    }
     void update() override {}
     void render() override
     {
+        
         Ground g = Ground::ALIVE;
-
-
-        render_scaled(engine(), groundToString(g), 64, 64);
+        if(g != Ground::NONE) render_scaled(engine(), groundToString(g), 64, 64);
         // drawDeadGround(engine(), xNumOfTiles + 6, yNumOfTiles + 6);
     }
     void on_keydown(Si32 key) override

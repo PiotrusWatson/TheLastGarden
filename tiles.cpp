@@ -14,7 +14,18 @@ enum class Ground {
     FENCE_CORNER_TOP_LEFT,
     FENCE_CORNER_TOP_RIGHT,
     FENCE_CORNER_BOTTOM_LEFT,
-    FENCE_CORNER_BOTTOM_RIGHT
+    FENCE_CORNER_BOTTOM_RIGHT,
+    WATER_MIDDLE,
+    WATER_STRAIGHT_TOP, 
+    WATER_STRAIGHT_LEFT, 
+    WATER_STRAIGHT_BOTTOM, 
+    WATER_STRAIGHT_RIGHT, 
+    WATER_CORNER_TOP_LEFT,
+    WATER_CORNER_TOP_RIGHT,
+    WATER_CORNER_BOTTOM_LEFT,
+    WATER_CORNER_BOTTOM_RIGHT,
+    NONE
+    
 };
 
 string groundToString (Ground ground)
@@ -31,11 +42,21 @@ string groundToString (Ground ground)
         case Ground::FENCE_CORNER_TOP_RIGHT: return "Assets/Images/Fence-Plus-Dead-Ground-8.png";
         case Ground::FENCE_CORNER_BOTTOM_LEFT: return "Assets/Images/Fence-Plus-Dead-Ground-6.png";
         case Ground::FENCE_CORNER_BOTTOM_RIGHT: return "Assets/Images/Fence-Plus-Dead-Ground-5.png";
+        case Ground::WATER_MIDDLE: return "Assets/Images/Water-Pond-9.png"; 
+        case Ground::WATER_STRAIGHT_TOP: return "Assets/Images/Water-Pond-5.png";
+        case Ground::WATER_STRAIGHT_LEFT: return "Assets/Images/Water-Pond-8.png";
+        case Ground::WATER_STRAIGHT_BOTTOM: return "Assets/Images/Water-Pond-7.png";
+        case Ground::WATER_STRAIGHT_RIGHT: return "Assets/Images/Water-Pond-6.png";
+        case Ground::WATER_CORNER_TOP_LEFT: return "Assets/Images/Water-Pond-1.png";
+        case Ground::WATER_CORNER_TOP_RIGHT: return "Assets/Images/Water-Pond-2.png";
+        case Ground::WATER_CORNER_BOTTOM_LEFT: return "Assets/Images/Water-Pond-4.png";
+        case Ground::WATER_CORNER_BOTTOM_RIGHT: return "Assets/Images/Water-Pond-3.png";
+        
     }
 }
 
 
-enum class Plant { LANDSEED, LANDSMALL, LANDBIG, WATERSEED, WATERSMALL, WATERBIG };
+enum class Plant { LANDSEED, LANDSMALL, LANDBIG, WATERSEED, WATERSMALL, WATERBIG, NONE };
 
 // struct Sprite
 // {
@@ -58,14 +79,16 @@ string plantToString (Plant plant)
 }
 
 
-enum class Obstacle { SMOG, FIRE, RADIATION };
+enum class Obstacle { SMOG, FIRE, RADIATION, NONE };
 
 string obstacleToString (Obstacle obstacle)
 {
     switch (obstacle)
     {
         case Obstacle::SMOG : return "Assets/Images/smog.png";
-        case Obstacle::FIRE : return "Assets/Images/fire-anim.png"; // TODO: needs to change to be animated
+        case Obstacle::FIRE : return "Assets/Images/fire_anim-1.png"; // TODO: needs to change to be animated
         case Obstacle::RADIATION : return "Assets/Images/radiation.png";
     }
 }
+
+//robot not yet loaded
