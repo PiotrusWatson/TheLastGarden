@@ -88,8 +88,11 @@ public:
                 groundMap.set(j, i, groundLevel[i][j]);
                 plantMap.set(j, i, plantLevel[i][j]);
                 obstacleMap.set(j, i, obstacleLevel[i][j]);
+                // MX_LOG("hello");
             }
         }
+
+        plantMap.set(1,9,Plant::GENERATOR);
 
         return true; 
     }

@@ -18,10 +18,10 @@ struct Robot
     Robot(int xPos, int yPos) : x(xPos), y(yPos), energy(0) {}
     
     int x, y, energy, seeds;
-    int dirx = 0, diry = 0;
+    int dirx, diry;
     int dir, oldDir;
 
-    void move(int direction, Tilemap<Ground> g, Tilemap<Plant> p, Tilemap<Obstacle> o);
+    void move(int direction, Tilemap<Ground> & g, Tilemap<Plant> & p, Tilemap<Obstacle> & o);
 
     //simple substraction on the energy
     int loseEnergy(int amount);

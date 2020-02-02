@@ -2,7 +2,7 @@
 #define _tilemap_h
 
 #include "numerics.h"
-
+#include "debug.h"
 template <class T>
 struct Tilemap
 {
@@ -22,13 +22,24 @@ public:
 
     T* get(Ui x, Ui y)
     {
-        if ((x >= w) || (y >= h)) return nullptr;
-        else return &(_data[y*w +x]);
+        if ((x >= w) || (y >= h))
+        {
+            MX_LOG("Failed To get tile, map size : " << _data.size()); 
+            return nullptr;
+        }
+        else
+        {
+            return &(_data[y*w +x]);
+        }
     }
 
     void set(Ui x, Ui y, const T & t)
     {
-        if ((x >= w) || (y >= h)) return;
+        if ((x >= w) || (y >= h))
+        {
+            MX_LOG("Set failed @ " << x << ", " << y);
+            return;
+        }
         else _data[y*w + x] = t;
     }
 

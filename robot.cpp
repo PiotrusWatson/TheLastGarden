@@ -7,14 +7,13 @@
 
 using namespace std;
 
-void Robot::move(int direction, Tilemap<Ground> g, Tilemap<Plant> p, Tilemap<Obstacle> o)
+void Robot::move(int direction, Tilemap<Ground> & g, Tilemap<Plant> & p, Tilemap<Obstacle> & o)
 {
-    Ground * g2 = g.get(dirx, diry);
-    if (g2 == nullptr) MX_LOG(dirx << ", " << diry);
+    Ground ground = *(g.get(diry, dirx));
+    Plant plant = *(p.get(diry, dirx));
+    Obstacle obstacle = *(o.get(diry, dirx));
 
-    Ground ground = *(g.get(dirx, diry));
-    Plant plant = *(p.get(dirx, diry));
-    Obstacle obstacle = *(o.get(dirx, diry));
+    MX_LOG(int(plant) << " " << dirx << " " << diry);
 
     switch(direction){
         case Direction::UP: 
