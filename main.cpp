@@ -2,11 +2,13 @@
 #include "state.h"
 #include <utility>
 #include <vector>
+#include <string>
 #include "tiles.hpp"
 #include "robot.hpp"
 #include "debug.h"
 #include "animation.hpp"
 #include "tilemap.h"
+#include "numerics.h"
 
 using namespace std;
 
@@ -55,13 +57,21 @@ class Test_State : public State
 
 public:
 
-    Robot rob;
+    
 
     bool init() override
     { 
         //initialize map
         plantLevel[9][1] = Plant::GENERATOR;
         rob = Robot();
+
+        //UI Text Initialization
+        std::string font = "Assets/Fonts/Laconic.otf";
+        std::string energyContent = "20";
+        std::string seedContent = "2";
+        int size =40;
+        energyText = engine()->create_text(font, size, energyContent );
+        seedText = engine()->create_text(font, size, seedContent);
 
         return true; 
     }
@@ -100,8 +110,14 @@ public:
 
         render_scaled(engine(), PLAYER_SPRITE, rob.y * 64, rob.x *64);
         render_scaled(engine(), obstacleToString(Obstacle::FIRE), rob.diry * 64, rob.dirx *64);
-        // drawDeadGround(engine(), xNumOfTiles + 6, yNumOfTiles + 6);
+
+        //UI Rendering
+        render_scaled(engine(), "Assets/Images/energy-icon.png", 10*64, 16);
+        render_scaled(engine(), "Assets/Images/energy-icon.png", 8*64, 16);
+        engine()->render_text(energyText, 9*64+20, 32);
+        engine()->render_text(seedText, 7*64+20, 32);
     }
+
     void on_keydown(Si32 key) override
     {
         //Switch Statement to check for keys
@@ -134,6 +150,9 @@ public:
 
 private:
     Text_ID text;
+    Robot rob;
+    Text_ID energyText;
+    Text_ID seedText;
 };
 
 
