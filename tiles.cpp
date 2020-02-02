@@ -43,15 +43,15 @@ string groundToString (Ground ground)
         case Ground::FENCE_CORNER_TOP_RIGHT: return "Assets/Images/Fence-Plus-Dead-Ground-8.png";
         case Ground::FENCE_CORNER_BOTTOM_LEFT: return "Assets/Images/Fence-Plus-Dead-Ground-6.png";
         case Ground::FENCE_CORNER_BOTTOM_RIGHT: return "Assets/Images/Fence-Plus-Dead-Ground-5.png";
-        case Ground::WATER_MIDDLE: return "Assets/Images/Water-Pond-9.png"; 
-        case Ground::WATER_STRAIGHT_TOP: return "Assets/Images/Water-Pond-5.png";
-        case Ground::WATER_STRAIGHT_LEFT: return "Assets/Images/Water-Pond-8.png";
-        case Ground::WATER_STRAIGHT_BOTTOM: return "Assets/Images/Water-Pond-7.png";
-        case Ground::WATER_STRAIGHT_RIGHT: return "Assets/Images/Water-Pond-6.png";
-        case Ground::WATER_CORNER_TOP_LEFT: return "Assets/Images/Water-Pond-1.png";
-        case Ground::WATER_CORNER_TOP_RIGHT: return "Assets/Images/Water-Pond-2.png";
-        case Ground::WATER_CORNER_BOTTOM_LEFT: return "Assets/Images/Water-Pond-4.png";
-        case Ground::WATER_CORNER_BOTTOM_RIGHT: return "Assets/Images/Water-Pond-3.png";
+        case Ground::WATER_MIDDLE: return "Assets/Images/Water_Pond-9.png"; 
+        case Ground::WATER_STRAIGHT_TOP: return "Assets/Images/Water_Pond-5.png";
+        case Ground::WATER_STRAIGHT_LEFT: return "Assets/Images/Water_Pond-8.png";
+        case Ground::WATER_STRAIGHT_BOTTOM: return "Assets/Images/Water_Pond-7.png";
+        case Ground::WATER_STRAIGHT_RIGHT: return "Assets/Images/Water_Pond-6.png";
+        case Ground::WATER_CORNER_TOP_LEFT: return "Assets/Images/Water_Pond-1.png";
+        case Ground::WATER_CORNER_TOP_RIGHT: return "Assets/Images/Water_Pond-2.png";
+        case Ground::WATER_CORNER_BOTTOM_LEFT: return "Assets/Images/Water_Pond-4.png";
+        case Ground::WATER_CORNER_BOTTOM_RIGHT: return "Assets/Images/Water_Pond-3.png";
         
     }
 }
