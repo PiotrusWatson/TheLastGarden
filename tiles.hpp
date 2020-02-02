@@ -39,4 +39,8 @@ enum class Obstacle { SMOG, FIRE, RADIATION, NONE };
 
 string obstacleToString (Obstacle obstacle);
 
+bool isWalkableGround (Ground ground);
+bool isWalkablePlant (Plant plant);
+bool isWalkableObstacle (Obstacle obstacle);
+
 #endif

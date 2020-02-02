@@ -55,6 +55,19 @@ string groundToString (Ground ground)
     }
 }
 
+bool isWalkableGround (Ground ground)
+{
+    switch (ground) 
+    {
+        case Ground::ALIVE:
+        case Ground::DEAD:
+        case Ground::NONE: 
+            return true;
+        default:
+            return false;
+    }
+}
+
 //Interactible Objects: Plants and Generator
 enum class Plant { LANDSEED, LANDSMALL, LANDBIG, WATERSEED, WATERSMALL, WATERBIG, GENERATOR, NONE };
 
@@ -79,6 +92,11 @@ string plantToString (Plant plant)
     }
 }
 
+bool isWalkablePlant (Plant plant)
+{
+    return plant == Plant::NONE;
+}
+
 
 enum class Obstacle { SMOG, FIRE, RADIATION, NONE };
 
@@ -90,6 +108,12 @@ string obstacleToString (Obstacle obstacle)
         case Obstacle::FIRE : return "Assets/Images/fire_anim-1.png"; // TODO: needs to change to be animated
         case Obstacle::RADIATION : return "Assets/Images/radiation.png";
     }
+}
+
+// could also be used to see if there is an obstacle to work on
+bool isWalkableObstacle (Obstacle obstacle)
+{
+    return obstacle == Obstacle::NONE;
 }
 
 

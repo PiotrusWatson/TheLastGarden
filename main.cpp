@@ -88,9 +88,9 @@ public:
                 Plant plant =  plantLevel[i][j];
                 Obstacle obstacle = obstacleLevel[i][j];
                 
-                if(ground != Ground::NONE) render_scaled(engine(), groundToString(ground), j*64, i*64 ); 
+                if(ground != Ground::NONE) render_scaled(engine(), groundToString(ground), j*64, i*64 );
                 if(plant != Plant::NONE) render_scaled(engine(), plantToString(plant), j*64, i*64 );
-                if(obstacle != Obstacle::NONE) render_scaled(engine(), obstacleToString(obstacle), j*64, i*64 ); 
+                if(obstacle != Obstacle::NONE) render_scaled(engine(), obstacleToString(obstacle), j*64, i*64 );
             }    
 
         }
@@ -109,8 +109,9 @@ public:
             case SDLK_ESCAPE: 
                 engine()->switch_state("test2");
                 break;
-            case SDLK_UP: 
-                rob.dir = Robot::UP; 
+            case SDLK_UP:
+
+                rob.dir = Robot::UP;
                 rob.dirx = rob.x - 1; rob.diry = rob.y; 
                 break;
             case SDLK_DOWN: 
@@ -122,17 +123,23 @@ public:
                 rob.dirx = rob.x; rob.diry = rob.y-1;
                 break;
             case SDLK_RIGHT: 
-                rob.dir = Robot::RIGHT; 
+                rob.dir = Robot::RIGHT;
                 rob.dirx = rob.x; rob.diry = rob.y+1;
                 break;
             default: break;
         }
         
-        rob.move();
+        if (isWalkable(rob.dirx, rob.diry)) rob.move();
         
     }
+
 private:
     Text_ID text;
+
+    bool isWalkable (int x, int y)
+    {
+        return isWalkableGround(GROUND_LEVEL[x][y]) && isWalkableObstacle(obstacleLevel[x][y]) && isWalkablePlant(plantLevel[x][y]);
+    }
 };
 
 
