@@ -17,7 +17,7 @@ public:
     void update() override {}
     void render() override
     {
-
+        engine()->render_texture("Assets/Images/Title_Screen.png",0,0);
     }
     void on_keydown(Si32 key) override
     {
