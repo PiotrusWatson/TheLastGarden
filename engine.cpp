@@ -74,6 +74,7 @@ bool Engine::init()
     }
 
     SDL_SetRenderDrawBlendMode(renderer,SDL_BLENDMODE_BLEND);
+    SDL_ShowCursor(0);
     active = true;
     return true;
 }

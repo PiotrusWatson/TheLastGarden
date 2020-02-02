@@ -243,7 +243,6 @@ int main(int argc, const char * argv[])
     Engine engine("The Last Garden", xScreenSize, yScreenSize, Engine::WINDOWED);
     Test_State game_state;
 
-
     Title_State state;
     Text_State text_00("text_01", "The earth is dying.\nThere is but one garden.");
     Text_State text_01("text_02", "You are its caretaker.");
@@ -255,5 +254,7 @@ int main(int argc, const char * argv[])
     engine.push_state("text_02", &text_02);
     engine.push_state("Test_State", &game_state);
     
+    // This code is a shit-fire, but it shouldn't break your computer.
+
     return engine.execute("entry_point");
 }

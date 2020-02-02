@@ -55,6 +55,7 @@ string groundToString (Ground ground)
         case Ground::WATER_CORNER_BOTTOM_RIGHT: return "Assets/Images/Water_Pond-3.png";
         
     }
+    return "";
 }
 
 bool isWalkableGround (Ground ground)
@@ -86,6 +87,7 @@ string plantToString (Plant plant)
         case Plant::WATERBIG: return "Assets/Images/Trees-6.png";
         case Plant::GENERATOR: return "Assets/Images/Generator.png";
     }
+    return "";
 }
 
 bool isPlantNone (Plant plant)
@@ -104,6 +106,7 @@ string obstacleToString (Obstacle obstacle)
         case Obstacle::FIRE : return "Assets/Images/fire_anim-1.png"; // TODO: needs to change to be animated
         case Obstacle::RADIATION : return "Assets/Images/radiation.png";
     }
+    return "";
 }
 
 // could also be used to see if there is an obstacle to work on
