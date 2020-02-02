@@ -19,7 +19,7 @@ struct Robot
     int dirx, diry;
     int dir, oldDir;
 
-    void move();
+    void move(int direction);
 
     //simple substraction on the energy
     int loseEnergy(int amount);

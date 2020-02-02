@@ -110,28 +110,23 @@ public:
                 engine()->switch_state("test2");
                 break;
             case SDLK_UP: 
-                rob.dir = Robot::UP; 
-                rob.dirx = rob.x - 1; rob.diry = rob.y; 
+                rob.move(Robot::UP); 
                 break;
             case SDLK_DOWN: 
-                rob.dir = Robot::DOWN;
-                rob.dirx = rob.x + 1; rob.diry = rob.y; 
+                rob.move(Robot::DOWN);
                 break;
             case SDLK_LEFT: 
-                rob.dir = Robot::LEFT; 
-                rob.dirx = rob.x; rob.diry = rob.y-1;
+                rob.move(Robot::LEFT);
                 break;
             case SDLK_RIGHT: 
-                rob.dir = Robot::RIGHT; 
-                rob.dirx = rob.x; rob.diry = rob.y+1;
+                rob.move(Robot::RIGHT);
                 break;
             case SDLK_SPACE:
-                //add interact logic here
-                break
+                
+                break;
             default: break;
         }
         
-        rob.move();
         
     }
 private:
