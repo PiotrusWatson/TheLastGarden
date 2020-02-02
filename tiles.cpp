@@ -72,12 +72,6 @@ bool isWalkableGround (Ground ground)
 //Interactible Objects: Plants and Generator
 enum class Plant { LANDSEED, LANDSMALL, LANDBIG, WATERSEED, WATERSMALL, WATERBIG, GENERATOR, NONE };
 
-// struct Sprite
-// {
-//     Sprite(const std::string & name, int xpos, int ypos) : texture(name), x(xpos), y(ypos) {}
-//     std::string texture;
-//     int x, y;
-// };
 
 string plantToString (Plant plant)
 {

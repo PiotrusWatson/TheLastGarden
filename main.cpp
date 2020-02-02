@@ -24,7 +24,7 @@ const int xNumOfTiles = 11, yNumOfTiles = 11;
 ////////////////////////////////////////////////////////////////////
 
 //initialzie ground layer here, currently set up to fill 11x11
-const vector<vector<Ground>> GROUND_LEVEL = {{Ground::FENCE_CORNER_TOP_LEFT, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP,Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP,Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_CORNER_TOP_RIGHT},
+vector<vector<Ground>> groundLevel = {{Ground::FENCE_CORNER_TOP_LEFT, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP,Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP,Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_STRAIGHT_TOP, Ground::FENCE_CORNER_TOP_RIGHT},
                                             {Ground::FENCE_STRAIGHT_LEFT, Ground::ALIVE, Ground::ALIVE, Ground::ALIVE,Ground::ALIVE, Ground::ALIVE, Ground::ALIVE, Ground::ALIVE,Ground::ALIVE, Ground::ALIVE, Ground::FENCE_STRAIGHT_RIGHT},
                                             {Ground::FENCE_STRAIGHT_LEFT, Ground::ALIVE, Ground::ALIVE, Ground::ALIVE,Ground::ALIVE, Ground::ALIVE, Ground::ALIVE, Ground::ALIVE,Ground::ALIVE, Ground::ALIVE, Ground::FENCE_STRAIGHT_RIGHT},
                                             {Ground::FENCE_STRAIGHT_LEFT, Ground::ALIVE, Ground::ALIVE, Ground::ALIVE,Ground::ALIVE, Ground::ALIVE, Ground::ALIVE, Ground::ALIVE,Ground::ALIVE, Ground::ALIVE, Ground::FENCE_STRAIGHT_RIGHT},
@@ -40,6 +40,21 @@ const vector<vector<Ground>> GROUND_LEVEL = {{Ground::FENCE_CORNER_TOP_LEFT, Gro
 //Note: removed const because those layers are modified later on
 vector<vector<Plant>> plantLevel(xNumOfTiles, vector<Plant>(yNumOfTiles, Plant::NONE));
 vector<vector<Obstacle>> obstacleLevel(xNumOfTiles, vector<Obstacle>(yNumOfTiles, Obstacle::NONE));
+
+
+
+Tilemap<Ground> groundMap = Tilemap<Ground>(xNumOfTiles, yNumOfTiles, Ground::NONE);
+Tilemap<Plant> plantMap = Tilemap<Plant>(xNumOfTiles, yNumOfTiles, Plant::NONE);
+Tilemap<Obstacle> obstacleMap = Tilemap<Obstacle>(xNumOfTiles, yNumOfTiles, Obstacle::NONE);
+
+
+// for (int i=0; i < yNumOfTiles; i++)
+// {
+//     for (int j=0; j < xNumOfTiles; j++)
+//     {
+//         groundMap.set()
+//     }
+// }
 
 
                                     
@@ -62,6 +77,17 @@ public:
         //initialize map
         plantLevel[9][1] = Plant::GENERATOR;
         rob = Robot();
+
+
+        for (int i=0; i < yNumOfTiles; i++)
+        {
+            for (int j=0; j < xNumOfTiles; j++)
+            {
+                groundMap.set(j, i, groundLevel[i][j]);
+                plantMap.set(j, i, plantLevel[i][j]);
+                obstacleMap.set(j, i, obstacleLevel[i][j]);
+            }
+        }
 
         return true; 
     }
@@ -86,8 +112,8 @@ public:
         {
             for(int j=0; j<xNumOfTiles; j++)
             {
-
-                Ground ground = GROUND_LEVEL[i][j];
+                Ground g = *(groundMap.get(j, i));
+                Ground ground = groundLevel[i][j];
                 Plant plant =  plantLevel[i][j];
                 Obstacle obstacle = obstacleLevel[i][j];
                 
@@ -113,16 +139,16 @@ public:
                 engine()->switch_state("test2");
                 break;
             case SDLK_UP: 
-                rob.move(Robot::UP, GROUND_LEVEL, plantLevel, obstacleLevel); 
+                rob.move(Robot::UP, groundLevel, plantLevel, obstacleLevel); 
                 break;
             case SDLK_DOWN: 
-                rob.move(Robot::DOWN, GROUND_LEVEL, plantLevel, obstacleLevel);
+                rob.move(Robot::DOWN, groundLevel, plantLevel, obstacleLevel);
                 break;
             case SDLK_LEFT: 
-                rob.move(Robot::LEFT, GROUND_LEVEL, plantLevel, obstacleLevel);
+                rob.move(Robot::LEFT, groundLevel, plantLevel, obstacleLevel);
                 break;
             case SDLK_RIGHT:
-                rob.move(Robot::RIGHT, GROUND_LEVEL, plantLevel, obstacleLevel);
+                rob.move(Robot::RIGHT, groundLevel, plantLevel, obstacleLevel);
                 break;
             case SDLK_SPACE:
                 break;

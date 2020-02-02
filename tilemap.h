@@ -17,7 +17,7 @@ public:
     T* get(Ui x, Ui y)
     {
         if ((x >= w) || (y >= h)) return nullptr;
-        else return _data[y*w +x];
+        else return &(_data[y*w +x]);
     }
 
     void set(Ui x, Ui y, const T & t)
