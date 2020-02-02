@@ -42,7 +42,7 @@ const vector<vector<Ground>> groundLevel = {{Ground::FENCE_CORNER_TOP_LEFT, Grou
 //initialize xNumOfTile*yNumOfTiles sized vectors with NONE
 //Note: removed const because those layers are modified later on
 vector<vector<Plant>> plantLevel(xNumOfTiles, vector<Plant>(yNumOfTiles, Plant::NONE));
-vector<vector<Obstacle>> obstacleLevel(xNumOfTiles, vector<Obstacle>(yNumOfTiles, Obstacle::NONE));
+vector<vector<Obstacle>> obstacleLevel(xNumOfTiles, vector<Obstacle>(yNumOfTiles, Obstacle::SMOG));
 
 
 
@@ -117,7 +117,25 @@ public:
     }
 
 
-    void update() override {}
+    void update() override 
+    {
+        for(int i=1; i<xNumOfTiles-1; i++)
+        {
+            for(int j=1; j<yNumOfTiles-1; j++)
+            {
+                if (!isPlantNone(*(plantMap.get(i, j))))
+                {
+                    for (int x=-1; x < 2; x++)
+                    {
+                        for (int y=-1; y < 2; y++)
+                        {
+                            obstacleMap.set(i-x, j-y, Obstacle::NONE);
+                        }
+                    }
+                }
+            }
+        }
+    }
     void render() override
     {
 

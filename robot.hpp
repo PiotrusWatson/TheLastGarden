@@ -14,7 +14,7 @@ struct Robot
         UP, DOWN, LEFT, RIGHT, NONE
     };
 
-    Robot() : x(5), y(5), energy(20), seeds(3), oldDir(NONE), dir(RIGHT){}
+    Robot() : x(9), y(2), energy(20), seeds(3), oldDir(NONE), dir(RIGHT){}
     Robot(int xPos, int yPos) : x(xPos), y(yPos), energy(0) {}
     
     int x, y, energy, seeds;
