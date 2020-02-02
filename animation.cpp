@@ -27,7 +27,7 @@ void Animation_Engine::create(const std::string & id, Ui frame_len)
     }
     Sequence seq(frame_len);
 
-    animations[id] = seq;   
+    animations[id] = seq;  
 }
 
 std::string Animation_Engine::current_frame(const std::string & id)
@@ -44,4 +44,11 @@ std::string Animation_Engine::current_frame(const std::string & id)
     
     Ui frame_num = (seq->acc / seq->interval) %  seq->frames.size();
     return seq->frames[frame_num];
+}
+
+void Animation_Engine::append(const std::string & id, const std::string & image)
+{
+    auto search = animations.find(id);
+    if (search == animations.end()) return;
+    search->second.frames.push_back(image);
 }

@@ -127,6 +127,7 @@ public:
         render_scaled(engine(), PLAYER_SPRITE, rob.y * 64, rob.x *64);
         render_scaled(engine(), obstacleToString(Obstacle::FIRE), rob.diry * 64, rob.dirx *64);
         // drawDeadGround(engine(), xNumOfTiles + 6, yNumOfTiles + 6);
+        // engine()->render_texture("Assets/Images/Title_Screen.png",0,0);
     }
     void on_keydown(Si32 key) override
     {

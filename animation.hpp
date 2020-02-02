@@ -19,13 +19,7 @@ private:
         Sequence(const Sequence & other)
         : frames(other.frames), interval(other.interval), acc(other.acc)
         {}
-        Sequence & operator=(const Sequence& other)
-        {
-            frames = other.frames;
-            interval = other.interval;
-            acc = other.interval;
-            return *this;
-        }
+        Sequence & operator=(const Sequence& other) = default;
 
         std::vector<std::string> frames;
         Ui interval;
