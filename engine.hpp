@@ -11,6 +11,7 @@ struct SDL_Window;
 struct SDL_Renderer;
 struct SDL_Texture;
 struct _TTF_Font;
+struct _Mix_Music;
 
 typedef Ui32 Text_ID;
 constexpr Ui32 INVALID_TEXT_ID = UI32_MAX;
@@ -27,7 +28,7 @@ public:
     : win_w(w), win_h(h), win_title(title),
     window(nullptr), renderer(nullptr),
     current_state(nullptr), active(false), _screen_mode(screen_mode),
-    next_text_id(0)
+    next_text_id(0), music(nullptr)
     {}
 
     /// execute() starts the engine, loops and cleans up itself
@@ -39,22 +40,27 @@ public:
 
     void window_size(int * w, int * h);
 
-    Text_ID create_text(const std::string & font, int size, const std::string text, Ui32 wrap);
+    Text_ID create_text(const std::string & font, int size, const std::string text, Ui32 wrap = 0);
 
     void render_texture(const std::string & file);
     void render_texture(const std::string & file, int x, int y, float xscale = 1, float yscale = 1);
     void render_text(Text_ID, int x, int y);
+
+    void play_music(const std::string & file);
+    void stop_music();
+    bool is_music_playing();
 private:
     void loop();
     bool init();
     void cleanup();
-
     SDL_Texture* fetch_texture(const std::string & file);
 
     std::unordered_map<std::string, SDL_Texture*> texture_vault;
     std::unordered_map<std::string, State*> state_vault;
     std::unordered_map<Text_ID, SDL_Texture*> text_vault;
     std::unordered_map<std::string, _TTF_Font*> font_vault;
+
+    _Mix_Music * music; 
 
     Text_ID next_text_id;
 

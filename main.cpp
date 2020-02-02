@@ -51,6 +51,8 @@ public:
     {
         if (key == SDLK_ESCAPE) engine()->switch_state("test2");
     }
+private:
+    Text_ID text;
 };
 
 
