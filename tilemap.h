@@ -1,13 +1,15 @@
 #ifndef _tilemap_h
 #define _tilemap_h
 
+#include "numerics.h"
+
 template <class T>
 struct Tilemap
 {
 public:
     Tilemap(Ui width, Ui height) : w(width), h(height) { _data.reserve(w*h); }
 
-    Tilemap(Ui width, Ui height, const T & t) : Tilemap(w,h){ fill(t); }
+    Tilemap(Ui width, Ui height, const T & fill_type) : Tilemap(w,h){ fill(fill_type); }
 
     void fill(const T & t)
     {
