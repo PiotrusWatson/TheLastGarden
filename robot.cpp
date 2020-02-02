@@ -5,7 +5,7 @@
 using namespace std;
 
 void Robot::move(){
-    
+    //require pressing twice the same direction to move
     if(oldDir != dir)
     {
         oldDir = dir;
