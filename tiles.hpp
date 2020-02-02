@@ -30,10 +30,10 @@ enum class Ground { ALIVE,
 string groundToString (Ground ground);
 
 
-enum class Plant { LANDSEED, LANDSMALL, LANDBIG, WATERSEED, WATERSMALL, WATERBIG, NONE };
+enum class Plant { LANDSEED, LANDSMALL, LANDBIG, WATERSEED, WATERSMALL, WATERBIG, GENERATOR, NONE };
 
-pair<string, pair<int, int>> plantToString (Plant plant);
-
+//pair<string, pair<int, int>> plantToString (Plant plant);
+string plantToString(Plant plant);
 
 enum class Obstacle { SMOG, FIRE, RADIATION, NONE };
 

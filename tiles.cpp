@@ -55,8 +55,8 @@ string groundToString (Ground ground)
     }
 }
 
-
-enum class Plant { LANDSEED, LANDSMALL, LANDBIG, WATERSEED, WATERSMALL, WATERBIG, NONE };
+//Interactible Objects: Plants and Generator
+enum class Plant { LANDSEED, LANDSMALL, LANDBIG, WATERSEED, WATERSMALL, WATERBIG, GENERATOR, NONE };
 
 // struct Sprite
 // {
@@ -75,6 +75,7 @@ string plantToString (Plant plant)
         case Plant::WATERSEED: return "Assets/Images/Trees-4.png";
         case Plant::WATERSMALL: return "Assets/Images/Trees-5.png";
         case Plant::WATERBIG: return "Assets/Images/Trees-6.png";
+        case Plant::GENERATOR: return "Assets/Images/Generator.png";
     }
 }
 
