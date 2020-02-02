@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "tilemap.h"
 using namespace std;
 
 
@@ -44,6 +45,6 @@ bool isWalkableGround (Ground ground);
 bool isPlantNone (Plant plant);
 bool isObstacleNone (Obstacle obstacle);
 
-bool isWalkable (int x, int y, vector<vector<Ground>>, vector<vector<Plant>>, vector<vector<Obstacle>>);
+bool isWalkable (Ground g, Plant p, Obstacle o);
 
 #endif

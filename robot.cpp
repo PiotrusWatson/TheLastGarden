@@ -2,28 +2,35 @@
 #include <vector>
 #include "robot.hpp"
 #include "tiles.hpp"
+#include "tilemap.h"
+#include "debug.h"
 
 using namespace std;
 
-void Robot::move(int direction, vector<vector<Ground>> g, vector<vector<Plant>> p, vector<vector<Obstacle>> o)
+void Robot::move(int direction, Tilemap<Ground> g, Tilemap<Plant> p, Tilemap<Obstacle> o)
 {
-    
-    
+    Ground * g2 = g.get(dirx, diry);
+    if (g2 == nullptr) MX_LOG(dirx << ", " << diry);
+
+    Ground ground = *(g.get(dirx, diry));
+    Plant plant = *(p.get(dirx, diry));
+    Obstacle obstacle = *(o.get(dirx, diry));
+
     switch(direction){
         case Direction::UP: 
-            if (oldDir == direction && isWalkable(dirx, diry, g, p, o)) x -= 1;  
+            if (oldDir == direction && isWalkable(ground, plant, obstacle)) x -= 1;  
             dirx = x-1; diry = y;
             break;
         case Direction::DOWN: 
-            if (oldDir == direction && isWalkable(dirx, diry, g, p, o)) x += 1;
+            if (oldDir == direction && isWalkable(ground, plant, obstacle)) x += 1;
             dirx = x+1; diry = y;
-            break; 
+            break;
         case Direction::LEFT: 
-            if (oldDir == direction && isWalkable(dirx, diry, g, p, o)) y -= 1;
+            if (oldDir == direction && isWalkable(ground, plant, obstacle)) y -= 1;
             dirx = x; diry = y-1;
             break; 
         case Direction::RIGHT: 
-            if (oldDir == direction && isWalkable(dirx, diry, g, p, o)) y += 1;
+            if (oldDir == direction && isWalkable(ground, plant, obstacle)) y += 1;
             dirx = x; diry = y+1;
             break; 
         default:

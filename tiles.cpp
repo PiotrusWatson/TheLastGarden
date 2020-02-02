@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include "tilemap.h"
 
 using namespace std;
 
@@ -113,9 +114,9 @@ bool isObstacleNone (Obstacle obstacle)
 
 
 
-bool isWalkable (int x, int y, vector<vector<Ground>> g, vector<vector<Plant>> p, vector<vector<Obstacle>> o)
+bool isWalkable (Ground g, Plant p, Obstacle o)
 {
-    return isWalkableGround(g[x][y]) && isPlantNone(p[x][y]) && isObstacleNone(o[x][y]);
+    return isWalkableGround(g) && isPlantNone(p) && isObstacleNone(o);
 }
 
 

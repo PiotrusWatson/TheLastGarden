@@ -112,10 +112,9 @@ public:
         {
             for(int j=0; j<xNumOfTiles; j++)
             {
-                Ground g = *(groundMap.get(j, i));
-                Ground ground = groundLevel[i][j];
-                Plant plant =  plantLevel[i][j];
-                Obstacle obstacle = obstacleLevel[i][j];
+                Ground ground = *(groundMap.get(j, i));
+                Plant plant =  *(plantMap.get(j, i));
+                Obstacle obstacle = *(obstacleMap.get(j, i));
                 
                 if(ground != Ground::NONE) render_scaled(engine(), groundToString(ground), j*64, i*64 );
                 if(plant != Plant::NONE) render_scaled(engine(), plantToString(plant), j*64, i*64 );
@@ -140,16 +139,16 @@ public:
                 engine()->switch_state("test2");
                 break;
             case SDLK_UP: 
-                rob.move(Robot::UP, groundLevel, plantLevel, obstacleLevel); 
+                rob.move(Robot::UP, groundMap, plantMap, obstacleMap); 
                 break;
             case SDLK_DOWN: 
-                rob.move(Robot::DOWN, groundLevel, plantLevel, obstacleLevel);
+                rob.move(Robot::DOWN, groundMap, plantMap, obstacleMap);
                 break;
             case SDLK_LEFT: 
-                rob.move(Robot::LEFT, groundLevel, plantLevel, obstacleLevel);
+                rob.move(Robot::LEFT, groundMap, plantMap, obstacleMap);
                 break;
             case SDLK_RIGHT:
-                rob.move(Robot::RIGHT, groundLevel, plantLevel, obstacleLevel);
+                rob.move(Robot::RIGHT, groundMap, plantMap, obstacleMap);
                 break;
             case SDLK_SPACE:
                 break;
