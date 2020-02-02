@@ -125,6 +125,9 @@ public:
                 rob.dir = Robot::RIGHT; 
                 rob.dirx = rob.x; rob.diry = rob.y+1;
                 break;
+            case SDLK_SPACE:
+                //add interact logic here
+                break
             default: break;
         }
         
