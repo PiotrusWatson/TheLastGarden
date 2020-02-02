@@ -44,10 +44,13 @@ public:
     // TODO: CHANGE_text(ID, etc)...
 
     void get_texture_size(const std::string & file, int * w, int* h);
+    void get_text_size(Text_ID, int * w, int* h);
 
     void render_texture(const std::string & file);
     void render_texture(const std::string & file, int x, int y, float xscale = 1, float yscale = 1);
     void render_text(Text_ID, int x, int y);
+
+    void render_fill(Ui8 r, Ui8 g, Ui8 b, Ui8 a);
 
     void play_music(const std::string & file);
     void stop_music();

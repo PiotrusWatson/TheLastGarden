@@ -10,6 +10,8 @@
 #include "tilemap.h"
 #include "debug.h"
 #include "numerics.h"
+#include "title_state.h"
+#include "text_state.h"
 
 using namespace std;
 
@@ -181,11 +183,10 @@ public:
     {
         //Switch Statement to check for keys
         //Gives the direction of the robot and calculate coordinate of the next tile
-        if (key == SDLK_ESCAPE) engine()->switch_state("test2");
         switch(key)
         {
             case SDLK_ESCAPE: 
-                engine()->switch_state("test2");
+                engine()->switch_state("entry_point");
                 break;
             case SDLK_UP: 
                 rob.move(Robot::UP, groundMap, plantMap, obstacleMap); 
@@ -240,8 +241,19 @@ int main(int argc, const char * argv[])
     int yScreenSize = yNumOfTiles * TILE_SIZE * GLOBAL_SCALE;
 
     Engine engine("The Last Garden", xScreenSize, yScreenSize, Engine::WINDOWED);
-    Test_State state;
+    Test_State game_state;
 
-    engine.push_state("test", &state);
-    return engine.execute("test");
+
+    Title_State state;
+    Text_State text_00("text_01", "The earth is dying.\nThere is but one garden.");
+    Text_State text_01("text_02", "You are its caretaker.");
+    Text_State text_02("title", "MISTAKes WeRE maDE...");
+
+    engine.push_state("title", &state);
+    engine.push_state("entry_point", &text_00);
+    engine.push_state("text_01", &text_01);
+    engine.push_state("text_02", &text_02);
+    engine.push_state("Test_State", &game_state);
+    
+    return engine.execute("entry_point");
 }
