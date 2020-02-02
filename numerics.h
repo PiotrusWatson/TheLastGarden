@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 
+typedef unsigned int Ui;
+typedef int Si;
+
 typedef uint8_t Ui8;
 typedef uint16_t Ui16;
 typedef uint32_t Ui32;
