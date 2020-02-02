@@ -38,12 +38,12 @@ public:
     void push_state(const std::string & id, State * state);
     bool switch_state(const std::string & id);
 
-    void window_size(int * w, int * h);
+    void get_window_size(int * w, int * h);
 
     Text_ID create_text(const std::string & font, int size, const std::string text, Ui32 wrap = 0);
     // TODO: CHANGE_text(ID, etc)...
 
-    void get_texture_size(int * w, int* h);
+    void get_texture_size(const std::string & file, int * w, int* h);
 
     void render_texture(const std::string & file);
     void render_texture(const std::string & file, int x, int y, float xscale = 1, float yscale = 1);

@@ -255,7 +255,7 @@ bool Engine::switch_state(const std::string & id)
     return true;
 }
 
-void Engine::window_size(int * w, int * h)
+void Engine::get_window_size(int * w, int * h)
 {
     SDL_GetRendererOutputSize(renderer, w, h);
 }
@@ -387,4 +387,11 @@ bool Engine::is_music_playing()
 void Engine::stop_music()
 {
     Mix_HaltMusic();
+}
+
+void Engine::get_texture_size(const std::string & file, int * w, int* h)
+{
+    SDL_Texture* tx = fetch_texture(file);
+    if (tx == nullptr) return;
+    SDL_QueryTexture(tx, nullptr, nullptr, w, h);
 }
