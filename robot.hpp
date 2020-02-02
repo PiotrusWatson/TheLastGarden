@@ -2,6 +2,7 @@
 #define robot_h
 
 #include <string>
+#include "tiles.hpp"
 using namespace std;
 
 
@@ -19,7 +20,7 @@ struct Robot
     int dirx, diry;
     int dir, oldDir;
 
-    void move();
+    void move(int direction, vector<vector<Ground>> g, vector<vector<Plant>> p, vector<vector<Obstacle>> o);
 
     //simple substraction on the energy
     int loseEnergy(int amount);

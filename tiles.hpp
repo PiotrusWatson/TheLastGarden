@@ -2,6 +2,7 @@
 #define _tiles_hpp
 
 #include <string>
+#include <vector>
 using namespace std;
 
 
@@ -40,7 +41,9 @@ enum class Obstacle { SMOG, FIRE, RADIATION, NONE };
 string obstacleToString (Obstacle obstacle);
 
 bool isWalkableGround (Ground ground);
-bool isWalkablePlant (Plant plant);
-bool isWalkableObstacle (Obstacle obstacle);
+bool isPlantNone (Plant plant);
+bool isObstacleNone (Obstacle obstacle);
+
+bool isWalkable (int x, int y, vector<vector<Ground>>, vector<vector<Plant>>, vector<vector<Obstacle>>);
 
 #endif

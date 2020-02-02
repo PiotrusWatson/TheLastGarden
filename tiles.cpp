@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -92,7 +93,7 @@ string plantToString (Plant plant)
     }
 }
 
-bool isWalkablePlant (Plant plant)
+bool isPlantNone (Plant plant)
 {
     return plant == Plant::NONE;
 }
@@ -111,9 +112,16 @@ string obstacleToString (Obstacle obstacle)
 }
 
 // could also be used to see if there is an obstacle to work on
-bool isWalkableObstacle (Obstacle obstacle)
+bool isObstacleNone (Obstacle obstacle)
 {
     return obstacle == Obstacle::NONE;
+}
+
+
+
+bool isWalkable (int x, int y, vector<vector<Ground>> g, vector<vector<Plant>> p, vector<vector<Obstacle>> o)
+{
+    return isWalkableGround(g[x][y]) && isPlantNone(p[x][y]) && isObstacleNone(o[x][y]);
 }
 
 

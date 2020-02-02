@@ -109,37 +109,28 @@ public:
             case SDLK_ESCAPE: 
                 engine()->switch_state("test2");
                 break;
-            case SDLK_UP:
-
-                rob.dir = Robot::UP;
-                rob.dirx = rob.x - 1; rob.diry = rob.y; 
+            case SDLK_UP: 
+                rob.move(Robot::UP, GROUND_LEVEL, plantLevel, obstacleLevel); 
                 break;
             case SDLK_DOWN: 
-                rob.dir = Robot::DOWN;
-                rob.dirx = rob.x + 1; rob.diry = rob.y; 
+                rob.move(Robot::DOWN, GROUND_LEVEL, plantLevel, obstacleLevel);
                 break;
             case SDLK_LEFT: 
-                rob.dir = Robot::LEFT; 
-                rob.dirx = rob.x; rob.diry = rob.y-1;
+                rob.move(Robot::LEFT, GROUND_LEVEL, plantLevel, obstacleLevel);
                 break;
-            case SDLK_RIGHT: 
-                rob.dir = Robot::RIGHT;
-                rob.dirx = rob.x; rob.diry = rob.y+1;
+            case SDLK_RIGHT:
+                rob.move(Robot::RIGHT, GROUND_LEVEL, plantLevel, obstacleLevel);
+                break;
+            case SDLK_SPACE:
                 break;
             default: break;
         }
         
-        if (isWalkable(rob.dirx, rob.diry)) rob.move();
         
     }
 
 private:
     Text_ID text;
-
-    bool isWalkable (int x, int y)
-    {
-        return isWalkableGround(GROUND_LEVEL[x][y]) && isWalkableObstacle(obstacleLevel[x][y]) && isWalkablePlant(plantLevel[x][y]);
-    }
 };
 
 
