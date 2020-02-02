@@ -5,6 +5,8 @@
 #include "tiles.hpp"
 #include "robot.hpp"
 #include "debug.h"
+#include "animation.hpp"
+#include "tilemap.h"
 
 using namespace std;
 
@@ -38,12 +40,13 @@ const vector<vector<Ground>> GROUND_LEVEL = {{Ground::FENCE_CORNER_TOP_LEFT, Gro
 //Note: removed const because those layers are modified later on
 vector<vector<Plant>> plantLevel(xNumOfTiles, vector<Plant>(yNumOfTiles, Plant::NONE));
 vector<vector<Obstacle>> obstacleLevel(xNumOfTiles, vector<Obstacle>(yNumOfTiles, Obstacle::NONE));
+
+
                                     
 
 ////////////////////////////////////////////////////////////////////
 // TEST STATE
 ////////////////////////////////////////////////////////////////////
-
 
 
 class Test_State : public State
