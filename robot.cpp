@@ -51,4 +51,10 @@ int Robot::loseEnergy(int amount){
     return energy; 
 };
 
+void Robot::plantTree(Tilemap<Ground> & g, Tilemap<Plant> & p)
+{
+    Ground ground = *(g.get(diry, dirx));
+
+    if(ground == Ground::ALIVE) p.set(diry, dirx, Plant::LANDSEED);
+}
 
