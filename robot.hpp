@@ -25,6 +25,8 @@ struct Robot
 
     //simple substraction on the energy
     int loseEnergy(int amount);
+
+    void plantTree(Tilemap<Ground> & g, Tilemap<Plant> & p);
 };
 
 

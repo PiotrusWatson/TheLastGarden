@@ -200,6 +200,7 @@ public:
                 rob.move(Robot::RIGHT, groundMap, plantMap, obstacleMap);
                 break;
             case SDLK_SPACE:
+                rob.plantTree(groundMap, plantMap);
                 break;
             default: break;
         }
